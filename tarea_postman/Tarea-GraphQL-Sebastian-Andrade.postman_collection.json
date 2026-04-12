@@ -1,0 +1,270 @@
+{
+  "info": {
+    "_postman_id": "81a8690e-ed81-4829-bc49-9a38930ce5c9",
+    "name": "Tarea GraphQL - Sebastian Andrade",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53947708",
+    "_collection_link": "https://go.postman.co/collection/53947708-81a8690e-ed81-4829-bc49-9a38930ce5c9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get continents with code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const data = pm.response.json().data;\r",
+              "const continents = data.continents;\r",
+              "\r",
+              "pm.test(\"Number of continents is correct\", function () {\r",
+              "    pm.expect(continents).to.have.lengthOf(7);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Europe code is EU\", function () {\r",
+              "    const europe = continents.find(c => c.name === \"Europe\");\r",
+              "    pm.expect(europe).to.not.be.undefined;\r",
+              "    pm.expect(europe.code).to.equal(\"EU\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query {\r\n  continents {\r\n    code\r\n    name\r\n  }\r\n}\r\n",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://countries.trevorblades.com/graphql",
+          "protocol": "https",
+          "host": [
+            "countries",
+            "trevorblades",
+            "com"
+          ],
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get europe capitals",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const data = pm.response.json().data;\r",
+              "const countries = data.continent.countries;\r",
+              "\r",
+              "pm.test(\"Capital of Andorra is Andorra la Vella\", function () {\r",
+              "    const andorra = countries.find(c => c.name === \"Andorra\");\r",
+              "    pm.expect(andorra).to.not.be.undefined;\r",
+              "    pm.expect(andorra.capital).to.equal(\"Andorra la Vella\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Capital of Austria is Vienna\", function () {\r",
+              "    const austria = countries.find(c => c.name === \"Austria\");\r",
+              "    pm.expect(austria).to.not.be.undefined;\r",
+              "    pm.expect(austria.capital).to.equal(\"Vienna\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query {\r\n    continent(code: \"EU\") {\r\n    countries {\r\n        name\r\n        capital\r\n    }\r\n  }\r\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://countries.trevorblades.com/graphql",
+          "protocol": "https",
+          "host": [
+            "countries",
+            "trevorblades",
+            "com"
+          ],
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get languages with code",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const data = pm.response.json().data;\r",
+              "const languages = data.languages;\r",
+              "\r",
+              "pm.test(\"Arabic code is ar\", function () {\r",
+              "    const arabic = languages.find(l => l.name === \"Arabic\");\r",
+              "    pm.expect(arabic).to.not.be.undefined;\r",
+              "    pm.expect(arabic.code).to.equal(\"ar\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Language with code 'am' is Amharic\", function () {\r",
+              "    const amharic = languages.find(l => l.code === \"am\");\r",
+              "    pm.expect(amharic).to.not.be.undefined;\r",
+              "    pm.expect(amharic.name).to.equal(\"Amharic\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query {\r\n  languages {\r\n    code\r\n    name\r\n  }\r\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://countries.trevorblades.com/graphql",
+          "protocol": "https",
+          "host": [
+            "countries",
+            "trevorblades",
+            "com"
+          ],
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get german speaking countries",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const data = pm.response.json().data;\r",
+              "const countries = data.language.countries;\r",
+              "\r",
+              "pm.test(\"Austria is in the list of German-speaking countries\", function () {\r",
+              "    const austria = countries.find(c => c.name === \"Austria\");\r",
+              "    pm.expect(austria).to.not.be.undefined;\r",
+              "});\r",
+              "\r",
+              "pm.test(\"United States is not in the list of German-speaking countries\", function () {\r",
+              "    const usa = countries.find(c => c.name === \"United States\");\r",
+              "    pm.expect(usa).to.be.undefined;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query {\r\n  language(code: \"de\") {\r\n    countries {\r\n      name\r\n    }\r\n  }\r\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://countries.trevorblades.com/graphql",
+          "protocol": "https",
+          "host": [
+            "countries",
+            "trevorblades",
+            "com"
+          ],
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Countries that use USD or EUR",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const data = pm.response.data;\r",
+              "const countries = data.countries;\r",
+              "\r",
+              "pm.test(\"Ecuador is in the list\", function () {\r",
+              "    const ecuador = countries.find(c => c.name === \"Ecuador\");\r",
+              "    pm.expect(ecuador).to.not.be.undefined;\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Germany is in the list\", function () {\r",
+              "    const germany = countries.find(c => c.name === \"Germany\");\r",
+              "    pm.expect(germany).to.not.be.undefined;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query {\r\n\tcountries(filter: {currency: {in: [\"EUR\", \"USD\"]}}){\r\n    name\r\n  }\r\n}",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "https://countries.trevorblades.com/graphql",
+          "protocol": "https",
+          "host": [
+            "countries",
+            "trevorblades",
+            "com"
+          ],
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

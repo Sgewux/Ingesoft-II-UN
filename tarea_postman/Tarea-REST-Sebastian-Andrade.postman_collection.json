@@ -1,0 +1,189 @@
+{
+  "info": {
+    "_postman_id": "9f7bdd8f-6c23-431a-9e8d-358ab30bcb8b",
+    "name": "Tarea REST - Sebastian Andrade",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53947708",
+    "_collection_link": "https://go.postman.co/collection/53947708-9f7bdd8f-6c23-431a-9e8d-358ab30bcb8b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get single country",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Speaks german?', function () {\r",
+              "    pm.expect(pm.response.json()[0].languages.deu).to.eql('German');\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://restcountries.com/v3.1/name/montenegro",
+          "protocol": "https",
+          "host": [
+            "restcountries",
+            "com"
+          ],
+          "path": [
+            "v3.1",
+            "name",
+            "montenegro"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all europe",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://restcountries.com/v3.1/region/europe",
+          "protocol": "https",
+          "host": [
+            "restcountries",
+            "com"
+          ],
+          "path": [
+            "v3.1",
+            "region",
+            "europe"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crypto price",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Check if price is over 100 dollars', function (){\r",
+              "    const body = pm.response.json();\r",
+              "    pm.expect(body.monero.usd).to.be.greaterThan(100);\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api.coingecko.com/api/v3/simple/price?ids=monero&vs_currencies=usd",
+          "protocol": "https",
+          "host": [
+            "api",
+            "coingecko",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v3",
+            "simple",
+            "price"
+          ],
+          "query": [
+            {
+              "key": "ids",
+              "value": "monero"
+            },
+            {
+              "key": "vs_currencies",
+              "value": "usd"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get characters",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "SlLCu2Pn025FRSDiSBL2",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://the-one-api.dev/v2/character?limit=100",
+          "protocol": "https",
+          "host": [
+            "the-one-api",
+            "dev"
+          ],
+          "path": [
+            "v2",
+            "character"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "100"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Human and Hobbit",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "SlLCu2Pn025FRSDiSBL2",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://the-one-api.dev/v2/character?race=Hobbit,Human",
+          "protocol": "https",
+          "host": [
+            "the-one-api",
+            "dev"
+          ],
+          "path": [
+            "v2",
+            "character"
+          ],
+          "query": [
+            {
+              "key": "race",
+              "value": "Hobbit,Human"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
