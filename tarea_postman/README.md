@@ -15,6 +15,8 @@ Fueron consumidas tres APIs públicas distintas: **REST Countries**, **CoinGecko
 #### 1. Get single country — REST Countries
 Se consultó información sobre Montenegro, verificando los idiomas hablados en dicho país.
 
+> **Nota**: El resultado del test es Failed, esto es esperado, debido a que el test quiere verificar si se habla Alemán y en Montenegro no se habla Alemán, esto se hizo a proposito para probar que sucedia si un test fallaba.
+
 ![Get single country](./media/get_single_country.png)
 
 **Test implementado:**
